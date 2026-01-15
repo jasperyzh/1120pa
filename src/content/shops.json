@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Bubble Laundry",
+        "location": "Level G, Block A",
+        "hours": "24 Hours",
+        "contact": "+60123456789",
+        "delivery": false
+    },
+    {
+        "name": "The Condo Cafe",
+        "location": "Level 1, Poolside",
+        "hours": "10:00 AM - 8:00 PM (Closed Mon)",
+        "contact": "+60198765432",
+        "delivery": true
+    }
+]

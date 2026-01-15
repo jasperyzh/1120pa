@@ -1,11 +1,109 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import ShopsDirectory from "../components/shops-directory.astro";
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allPosts = await getCollection('blog');
+// Sort by date desc
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Latest 2 for "News & Events"
+const latestPosts = sortedPosts.slice(0, 2);
+
+// Latest 5 for "Blog Section" (though for now it might duplicate, but let's just list them all or top 5)
+const recentPosts = sortedPosts.slice(0, 5);
+
+// Helper for formatting date
+const formatDate = (date: Date) => {
+	return date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+};
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Hero Section -->
+	<section class="py-5 text-center container">
+		<div class="row py-lg-5">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="fw-light">1120 Park Avenue</h1>
+				<p class="lead text-muted">A community portal for residents. Find quick information, shop directories, and latest updates.</p>
+				<p>
+					<a href="#directory" class="btn btn-primary my-2">Find Shops</a>
+					<a href="#contact" class="btn btn-secondary my-2">Contact Management</a>
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Latest Posts (Announcements/Events) -->
+	<section class="mb-5">
+		<h2 class="border-bottom pb-2 mb-4">Latest Updates</h2>
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			{latestPosts.map(post => (
+				<div class="col">
+					<div class="card h-100 border-primary-subtle">
+						<div class="card-body">
+							<h5 class="card-title">{post.data.title}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">{formatDate(post.data.pubDate)} <span class="badge bg-info text-dark">{post.data.category}</span></h6>
+							<p class="card-text">{post.data.description}</p>
+							<!-- <a href={`/blog/${post.slug}`} class="card-link">Read more</a> -->
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<!-- Blog List -->
+	<section class="mb-5">
+		<h3 class="mb-3">Recent Posts</h3>
+		<ul class="list-group">
+			{recentPosts.map(post => (
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					<span>
+						<strong>{post.data.title}</strong> - <span class="text-muted">{post.data.description}</span>
+					</span>
+					<span class="badge bg-secondary rounded-pill">{formatDate(post.data.pubDate)}</span>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<!-- Contact Information -->
+	<section class="mb-5" id="contact">
+		<div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+			<div class="col-md-12 px-0">
+				<h2 class="display-6 fst-italic">Important Contacts</h2>
+				<div class="row mt-4">
+					<div class="col-md-6 mb-3">
+						<h5>🏢 Management Office</h5>
+						<p class="mb-1"><strong>Location:</strong> Level 1, Block A</p>
+						<p class="mb-1"><strong>Hours:</strong> Mon-Fri 9AM-5PM, Sat 9AM-1PM</p>
+						<p class="mb-1"><strong>Phone:</strong> <a href="tel:+60312345678" class="text-white">+603-1234 5678</a></p>
+						<p><strong>Email:</strong> <a href="mailto:management@1120pa.com" class="text-white">management@1120pa.com</a></p>
+					</div>
+					<div class="col-md-6 mb-3">
+						<h5>👮 Security (24/7)</h5>
+						<p class="mb-1"><strong>Guard House:</strong> <a href="tel:+60387654321" class="text-white">+603-8765 4321</a></p>
+						<p class="mb-1"><strong>Intercom:</strong> Press *100</p>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-12">
+						<h5>🔗 Quick Links</h5>
+						<a href="#" class="btn btn-outline-light btn-sm me-2">Facility Booking</a>
+						<a href="#" class="btn btn-outline-light btn-sm me-2">Visitor Registration</a>
+						<a href="#" class="btn btn-outline-light btn-sm me-2">House Rules</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Business Directory -->
+	<section class="mb-5" id="directory">
+		<h2 class="border-bottom pb-2 mb-4">Shops & Services</h2>
+		<p class="text-muted mb-4">Businesses operating within the condo. Information last verified: Oct 2023.</p>
+		<ShopsDirectory />
+	</section>
+
 </Layout>
