@@ -2,6 +2,8 @@
 import shops from "../content/shops.json";
 
 const categories = ["All", "Food", "Services", "Groceries"];
+
+const sortedShops = [...shops].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <div class="mb-4">
@@ -23,7 +25,7 @@ const categories = ["All", "Food", "Services", "Groceries"];
         id="shops-container"
     >
         {
-            shops.map((shop) => (
+            sortedShops.map((shop) => (
                 <div class="col shop-item" data-category={shop.category}>
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
