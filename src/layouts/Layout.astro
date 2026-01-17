@@ -33,7 +33,21 @@ import Disclaimer from "../components/Disclaimer.astro";
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
 			<div class="container">
-				<a class="navbar-brand" href="/">1120 Park Avenue</a>
+				<a class="navbar-brand" href="/">
+					<h4 class="position-relative d-inline-block">
+						<span class="position-relative z-1"
+							>1120 Park Avenue</span
+						>
+						<span
+							class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary
+						opacity-75
+						
+						fs-6"
+						>
+							Unofficial
+						</span>
+					</h4>
+				</a>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -69,10 +83,18 @@ import Disclaimer from "../components/Disclaimer.astro";
 
 		<footer class="footer mt-auto py-3 bg-light">
 			<div class="container text-center">
-				<span class="text-muted"
-					>© {new Date().getFullYear()} 1120 Park Avenue Resident Info.
-					Not official management site.</span
+				<p class="text-muted small mb-2">
+					© {new Date().getFullYear()} &middot; 1120 Park Avenue Resident
+					Info. Not official management site.
+				</p>
+				<a
+					href="https://forms.gle/pqNTqPgiiMrXz8zU7"
+					target="_blank"
+					class="link-secondary text-decoration-none small"
 				>
+					<i class="bi bi-chat-right-text me-1"></i>
+					Provide Feedback
+				</a>
 			</div>
 		</footer>
 
@@ -85,6 +107,20 @@ import Disclaimer from "../components/Disclaimer.astro";
 	</body>
 </html>
 
-<style>
-	/* Custom styles if needed, mostly using Bootstrap utility classes */
+<style is:global>
+	body {
+		line-height: 1.8;
+	}
+	hr {
+		margin: 2rem 0;
+	}
+	h3 {
+		margin-top: 3rem;
+		margin-bottom: 2rem;
+	}
+
+	.content--prose {
+		max-width: 60ch;
+		margin-inline: auto;
+	}
 </style>

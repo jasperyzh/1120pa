@@ -1,34 +1,6 @@
 ---
 import shops from "../content/shops.json";
 
-// Get unique categories for filter if we had them in JSON, but for now hardcode or infer?
-// The JSON doesn't have categories, so I will add a category based on the name or just add "Category" to the display for now.
-// Wait, the prompt asked for filtering: [All] [Food] [Services] [Groceries].
-// I'll assume some derived categories for the demo or just map everything to 'Services' if not specified,
-// OR I will update the shops.json in my mind to include categories?
-// The user said: "Business Name & Category" in the plan.
-// I will just add a 'category' field to the JSON logic or inferred.
-// Actually, let's keep it simple and just show all for now, BUT add the UI for filtering and make it functional
-// by adding data attributes. I will mock the category logic for existing 2 items.
-// "Bubble Laundry" -> Services
-// "The Condo Cafe" -> Food
-
-const shopsWithCategory = shops.map((shop) => {
-    let category = "Services";
-    if (
-        shop.name.toLowerCase().includes("cafe") ||
-        shop.name.toLowerCase().includes("food")
-    ) {
-        category = "Food";
-    } else if (
-        shop.name.toLowerCase().includes("mart") ||
-        shop.name.toLowerCase().includes("grocer")
-    ) {
-        category = "Groceries";
-    }
-    return { ...shop, category };
-});
-
 const categories = ["All", "Food", "Services", "Groceries"];
 ---
 
@@ -51,7 +23,7 @@ const categories = ["All", "Food", "Services", "Groceries"];
         id="shops-container"
     >
         {
-            shopsWithCategory.map((shop) => (
+            shops.map((shop) => (
                 <div class="col shop-item" data-category={shop.category}>
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
@@ -69,13 +41,41 @@ const categories = ["All", "Food", "Services", "Groceries"];
                             </p>
 
                             <div class="mt-3 d-flex justify-content-between align-items-center">
-                                <a
-                                    href={`https://wa.me/${shop.contact}`}
-                                    class="btn btn-success btn-sm"
-                                    target="_blank"
-                                >
-                                    <i class="bi bi-whatsapp" /> WhatsApp
-                                </a>
+                                {(() => {
+                                    // Simple check if it looks like a mobile number (starts with 01, +601, 601)
+                                    // Remove dashes and spaces first
+                                    const cleanNum = shop.contact.replace(
+                                        /[^\d+]/g,
+                                        "",
+                                    );
+                                    const isMobile =
+                                        cleanNum.startsWith("01") ||
+                                        cleanNum.startsWith("601") ||
+                                        cleanNum.startsWith("+601");
+
+                                    // Format for WhatsApp: Needs 60 prefix, no +, no dashes
+                                    let waNum = cleanNum.replace(/^\+/, "");
+                                    if (waNum.startsWith("0"))
+                                        waNum = "6" + waNum;
+
+                                    return isMobile ? (
+                                        <a
+                                            href={`https://wa.me/${waNum}`}
+                                            class="btn btn-success btn-sm"
+                                            target="_blank"
+                                        >
+                                            <i class="bi bi-whatsapp" />{" "}
+                                            WhatsApp
+                                        </a>
+                                    ) : (
+                                        <a
+                                            href={`tel:${shop.contact}`}
+                                            class="btn btn-primary btn-sm"
+                                        >
+                                            <i class="bi bi-telephone" /> Call
+                                        </a>
+                                    );
+                                })()}
                                 {shop.delivery && (
                                     <span class="badge text-bg-info">
                                         Delivery

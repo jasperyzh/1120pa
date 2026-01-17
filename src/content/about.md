@@ -1,4 +1,5 @@
 # 👋 Hello & Welcome to 1120 Park Avenue
+(About this site)
 
 ### A digital handbook by residents, for residents.
 
@@ -17,18 +18,20 @@ Think of this as an "Un-Official Quick Start Guide" to the building.
 
 1.  **The Info Hub:** Useful contacts, renovation hours, trash disposal info, and frequently asked questions.
 2.  **Events & Announcements:** Highlights of things happening around our blocks.
-3.  **Marketplace (Coming Soon..?):** A future space for residents to trade and sell items within the community.
-4.  **Feedback:** A way for you to tell us what info is missing!
+3.  **Feedback:** A way for you to tell us what info is missing!
+
+
+<!-- 3.  **Marketplace (Coming Soon..?):** A future space for residents to trade and sell items within the community. -->
 
 ---
 
 ### 🔐 Privacy & Data
 We believe in "Privacy by Design." Since we are just neighbors, we don't want your data.
 
-*   **No Tracking:** We do not use invasive trackers or sell user data.
+*   **Website Analytics:** We use basic, anonymous analytics solely to better understand which pages are useful and how we can improve the site structure. We do not use invasive trackers or sell user data.
 *   **No Login Required:** You don't need to sign up or give us your unit number to read the FAQs.
 *   **Public Info Only:** We do not host sensitive documents like financial audits, AGM minutes, or resident lists here. For those, please visit the MO.
-*   **Third-Party Tools:** If you use a Google Form (for feedback) embedded here, that data is handled by Google’s standard privacy policy.
+*   **Feedback & Forms:** We use Google Forms to collect feedback and suggestions. Use of these forms is voluntary, and any data submitted is handled according to Google’s standard privacy policy.
 
 ---
 
@@ -41,20 +44,21 @@ We believe in "Privacy by Design." Since we are just neighbors, we don't want yo
 
 ### ❓ Frequently Asked Questions
 
+
 **Q: Is this site replacing the official management app?**
-**A:** No. Always follow official management instructions for payments and legal notices. This site is just a supplementary tool for convenience.
+No. Always follow official management instructions for payments and legal notices. This site is just a supplementary tool for convenience.
 
 **Q: Why can't I see the AGM minutes here?**
-**A:** To protect the privacy and financial security of the community, we don't host internal private documents on this public website. You can get those directly from the Management Office.
+To protect the privacy and financial security of the community, we don't host internal private documents on this public website. You can get those directly from the Management Office.
 
 **Q: I found a mistake. What should I do?**
-**A:** Since house rules change, we might miss an update. Please let us know via the [**Feedback Form**](#) so we can fix it for everyone!
+Since house rules change, we might miss an update. Please let us know via the <a href="https://forms.gle/pqNTqPgiiMrXz8zU7" target="_blank">**Feedback Form**</a> so we can fix it for everyone!
 
 **Q: Is there a cost to use this?**
-**A:** No. This is a free resource to improve our community living experience.
+No. This is a free resource to improve our community living experience.
 
 **Q: Who is running this?**
-**A:** A neighbor from B7 who got tired of digging Whatsapp messages and walking to the MO.
+A neighbor from B7 who got tired of digging Whatsapp messages and walking to the MO.
 
 ---
 
