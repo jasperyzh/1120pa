@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark;
+}
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply line-height-relaxed;
+  }
+}
+
+@layer components {
+  .content--prose {
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+}

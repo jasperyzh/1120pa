@@ -1,0 +1,105 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Announcements - 1120pa Community Hub" description="Official announcements and notices for 1120 Park Avenue residents">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Announcements</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">
+    <i class="bi bi-megaphone me-2"></i>Announcements
+  </h1>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <strong>Sample Announcement Block</strong> - This section will be connected to Supabase database in Phase 2.
+      </div>
+
+      <div class="alert alert-danger mb-4">
+        <div class="d-flex">
+          <i class="bi bi-exclamation-circle-fill fs-4 me-3"></i>
+          <div>
+            <strong>URGENT: Water Supply Interruption</strong>
+            <p class="mb-0 mt-1">Water will be cut off on Saturday, 25th March 2026 from 9:00 AM to 5:00 PM for maintenance work. Please store sufficient water for use during this period.</p>
+            <small class="text-muted">Posted: 20th March 2026</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-calendar-event me-2 text-primary"></i>
+            Monthly Maintenance Fee Due
+          </h5>
+          <p class="card-text">Reminder that the monthly maintenance fee is due by the 15th of each month. Please ensure payment is made on time to avoid late payment charges.</p>
+          <small class="text-muted">Posted: 1st March 2026</small>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-tools me-2 text-success"></i>
+            Lift Maintenance Schedule
+          </h5>
+          <p class="card-text">Lift A will undergo routine maintenance on Sunday, 2nd April 2026. Residents are advised to use Lift B during this period.</p>
+          <small class="text-muted">Posted: 15th February 2026</small>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-person-badge me-2 text-info"></i>
+            New Security Measures
+          </h5>
+          <p class="card-text">Starting from 1st March 2026, all visitors must be registered through the Gprop app or at the guard house. Unregistered visitors will not be allowed entry.</p>
+          <small class="text-muted">Posted: 10th February 2026</small>
+        </div>
+      </div>
+
+      <div class="text-center text-muted">
+        <small>Older announcements are archived and available upon request from Management Office.</small>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card bg-primary text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-bell me-2"></i>Stay Updated
+          </h5>
+          <p class="card-text">Add this website to your home screen for instant access to announcements!</p>
+          <p class="small mb-0"><i class="bi bi-phone me-2"></i>Mobile: Tap the share button → "Add to Home Screen"</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0"><i class="bi bi-question-circle me-2"></i>Need Help?</h5>
+        </div>
+        <div class="card-body">
+          <p>For urgent matters, please contact:</p>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <strong><i class="bi bi-shield me-2"></i>24-Hour Security</strong>
+              <br /><small>For emergencies and immediate assistance</small>
+            </li>
+            <li>
+              <strong><i class="bi bi-building me-2"></i>Management Office</strong>
+              <br /><small>For administrative queries</small>
+            </li>
+          </ul>
+          <a href="/#contacts" class="btn btn-outline-primary btn-sm w-100">View All Contacts</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

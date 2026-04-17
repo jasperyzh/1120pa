@@ -1,0 +1,132 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Visitor Guide - 1120pa Community Hub" description="Guide for visitors and couriers at 1120 Park Avenue">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active">Guides</li>
+      <li class="breadcrumb-item active" aria-current="page">Visitor Guide</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">Visitor & Courier Guide</h1>
+
+  <div class="alert alert-info">
+    <i class="bi bi-info-circle me-2"></i>
+    <strong>Important:</strong> All visitors and couriers must enter and exit through <strong>Gate 1</strong> only.
+  </div>
+
+  <div class="accordion" id="visitorAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#entryRequirements">
+          Entry Requirements
+        </button>
+      </h2>
+      <div id="entryRequirements" class="accordion-collapse collapse show" data-bs-parent="#visitorAccordion">
+        <div class="accordion-body">
+          <h5>Documents Required</h5>
+          <ul>
+            <li><strong>Driving License</strong> or <strong>IC (Identity Card)</strong></li>
+            <li><strong>Resident's Address</strong> (e.g., B2-XX-XX)</li>
+            <li><strong>Purpose of Visit:</strong>
+              <ul>
+                <li>Visit (social call)</li>
+                <li>Delivery (food, parcels, packages)</li>
+                <li>Pickup</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#visitorApp">
+          Registering Visitors (Resident's Guide)
+        </button>
+      </h2>
+      <div id="visitorApp" class="accordion-collapse collapse" data-bs-parent="#visitorAccordion">
+        <div class="accordion-body">
+          <h5>Using the Official App (Gprop / JaGaApp)</h5>
+          <ol class="list-group list-group-numbered mb-3">
+            <li class="list-group-item">Download <strong>Gprop</strong> from Apple App Store or Google Play</li>
+            <li class="list-group-item">Click <strong>'Forgot Password'</strong> and enter your registered email</li>
+            <li class="list-group-item">Check your email for a <strong>temporary password</strong></li>
+            <li class="list-group-item">Login using your email and temporary password</li>
+            <li class="list-group-item"><strong>Important:</strong> Change your password in the Profile settings</li>
+            <li class="list-group-item">Go to <strong>"Add New Visitor"</strong> to register guests in advance</li>
+          </ol>
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Pre-registering visitors helps speed up the check-in process at the guard house.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#parking">
+          Visitor Parking
+        </button>
+      </h2>
+      <div id="parking" class="accordion-collapse collapse" data-bs-parent="#visitorAccordion">
+        <div class="accordion-body">
+          <p>Visitor parking is available at designated areas within the compound.</p>
+          <ul>
+            <li>Please follow signs for <strong>Visitor Parking</strong></li>
+            <li>Do not park in numbered bays assigned to residents</li>
+            <li>Overnight parking may have specific rules - please check with Security</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#codeOfConduct">
+          Code of Conduct
+        </button>
+      </h2>
+      <div id="codeOfConduct" class="accordion-collapse collapse" data-bs-parent="#visitorAccordion">
+        <div class="accordion-body">
+          <p>As a visitor, please be mindful of the following:</p>
+          <ul>
+            <li>Keep noise levels appropriate for a residential area</li>
+            <li>Do not use facilities (pool, gym, etc.) unless invited by the resident</li>
+            <li>Maintain cleanliness in common areas</li>
+            <li>Follow all safety and security guidelines</li>
+            <li>Ensure children are supervised at all times</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-telephone me-2"></i>Need Help?</h5>
+          <p class="card-text">Contact the Security Office for assistance with visitor registration or any concerns.</p>
+          <a href="/#contacts" class="btn btn-outline-primary btn-sm">View Contact Numbers</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-building me-2"></i>For Residents</h5>
+          <p class="card-text">New to the building? Check out our moving in guide for essential information.</p>
+          <a href="/guides/moving" class="btn btn-outline-primary btn-sm">Moving In Guide</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

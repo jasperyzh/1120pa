@@ -4,204 +4,205 @@ import ShopsDirectory from "../components/shops-directory.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
-// Sort by date desc
 const sortedPosts = allPosts.sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// Latest 2 for "News & Events"
-const latestPosts = sortedPosts.slice(0, 2);
-
-// Latest 5 for "Blog Section" (though for now it might duplicate, but let's just list them all or top 5)
-const recentPosts = sortedPosts.slice(0, 5);
-
-// Helper for formatting date
+const latestPosts = sortedPosts.slice(0, 3);
 const formatDate = (date: Date) => {
-	return date.toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	});
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 };
 ---
 
 <Layout>
-	<!-- Hero Section -->
-	<section class="py-5 text-center container">
-		<div class="row py-lg-5">
-			<div class="col-md-8 mx-auto">
-				<h1 class="position-relative d-inline-block display-4">
-					1120 Park Avenue
-					<span
-						class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary
-						opacity-75
-						z-n1
-						fs-6"
-					>
-						Unofficial
-					</span>
-				</h1>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-md-8 mx-auto">
+        <h1 class="display-4 fw-bold">
+          1120 Park Avenue
+          <span class="badge bg-secondary ms-2 fs-6">Unofficial</span>
+        </h1>
+        <p class="lead text-muted">
+          Your community portal for quick information, guides, and updates.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+          <a href="/announcements" class="btn btn-danger btn-lg">
+            <i class="bi bi-megaphone me-2"></i>Announcements
+          </a>
+          <a href="/guides/visitors" class="btn btn-outline-primary btn-lg">
+            <i class="bi bi-compass me-2"></i>Guides
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-				<p class="lead text-muted">
-					A community portal for residents. Find quick information,
-					shop directories, and latest updates.
-				</p>
-				<p>
-					<a href="#directory" class="btn btn-primary my-2"
-						>Find Shops</a
-					>
-					<a href="#contact" class="btn btn-secondary my-2"
-						>Contact Management</a
-					>
-				</p>
-			</div>
-		</div>
-	</section>
+  <!-- Quick Links Grid -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">
+      <i class="bi bi-grid-3x3-gap me-2"></i>Quick Access
+    </h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <a href="/guides/visitors" class="card text-decoration-none h-100">
+          <div class="card-body text-center">
+            <i class="bi bi-person-badge display-5 text-primary"></i>
+            <h6 class="mt-2 mb-0">Visitor Guide</h6>
+            <small class="text-muted">For guests & couriers</small>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="/guides/moving" class="card text-decoration-none h-100">
+          <div class="card-body text-center">
+            <i class="bi bi-box-seam display-5 text-success"></i>
+            <h6 class="mt-2 mb-0">Moving Guide</h6>
+            <small class="text-muted">In & out checklist</small>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="/guides/renovation" class="card text-decoration-none h-100">
+          <div class="card-body text-center">
+            <i class="bi bi-tools display-5 text-warning"></i>
+            <h6 class="mt-2 mb-0">Renovation</h6>
+            <small class="text-muted">Rules & booking</small>
+          </div>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="https://www.picktime.com/f1bb4627-4b1b-483d-b746-4c34c8808d53" target="_blank" class="card text-decoration-none h-100">
+          <div class="card-body text-center">
+            <i class="bi bi-calendar-check display-5 text-info"></i>
+            <h6 class="mt-2 mb-0">Book Court</h6>
+            <small class="text-muted">Badminton, ping pong</small>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-	<!-- Latest Posts (Announcements/Events) -->
-	<!-- <section class="mb-5">
-		<h2 class="border-bottom pb-2 mb-4">Latest Updates</h2>
-		<div class="row row-cols-1 row-cols-md-2 g-4">
-			{
-				latestPosts.map((post) => (
-					<div class="col">
-						<div class="card h-100 border-primary-subtle">
-							<div class="card-body">
-								<h5 class="card-title">{post.data.title}</h5>
-								<h6 class="card-subtitle mb-2 text-muted">
-									{formatDate(post.data.pubDate)}{" "}
-									<span class="badge bg-info text-dark">
-										{post.data.category}
-									</span>
-								</h6>
-								<p class="card-text">{post.data.description}</p>
-								<a
-									href={`/blog/${post.slug}`}
-									class="card-link"
-								>
-									Read more
-								</a>
-							</div>
-						</div>
-					</div>
-				))
-			}
-		</div>
-	</section>
- -->
-	<!-- Blog List -->
-	<!-- <section class="mb-5">
-		<h3 class="mb-3">Recent Posts</h3>
-		<ul class="list-group">
-			{
-				recentPosts.map((post) => (
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span>
-							<strong>{post.data.title}</strong> -{" "}
-							<span class="text-muted">
-								{post.data.description}
-							</span>
-						</span>
-						<span class="badge bg-secondary rounded-pill">
-							{formatDate(post.data.pubDate)}
-						</span>
-					</li>
-				))
-			}
-		</ul>
-	</section> -->
+  <!-- Latest Updates / Announcements -->
+  <section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">
+      <i class="bi bi-newspaper me-2"></i>Latest Updates
+    </h2>
+    <div class="row g-4">
+      {latestPosts.length > 0 ? (
+        latestPosts.map((post) => (
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <span class="badge bg-primary">{post.data.category}</span>
+                  <small class="text-muted">{formatDate(post.data.pubDate)}</small>
+                </div>
+                <h5 class="card-title">{post.data.title}</h5>
+                <p class="card-text text-muted small">{post.data.description}</p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href={`/blog/${post.slug}`} class="btn btn-sm btn-outline-primary">
+                  Read more <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      )) : (
+        <div class="col-12">
+          <div class="alert alert-info mb-0">
+            <i class="bi bi-info-circle me-2"></i>
+            No announcements yet. Check back soon!
+          </div>
+        </div>
+      )}
+    </div>
+    {latestPosts.length > 0 && (
+      <div class="text-center mt-4">
+        <a href="/announcements" class="btn btn-outline-secondary">
+          View All Announcements <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
+    )}
+  </section>
 
-	<!-- Contact Information -->
-	<section class="mb-5" id="contact">
-		<div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
-			<div class="col-md-12 px-0">
-				<h2 class="display-6 fst-italic">Important Contacts</h2>
-				<div class="row mt-4">
-					<div class="col-md-6 mb-3">
-						<h5>🏢 Management Office</h5>
-						<p class="mb-1">
-							<strong>Hours:</strong><br />
-							Mon - Fri: 9am - 5pm <small
-								>(Lunch: 1pm-2pm, Fri: 1pm-2:30pm)</small
-							><br />
-							Sat: 9am - 1pm
-						</p>
-						<p class="mb-1">
-							<strong>Phone:</strong>
-							<a href="tel:03 7660 4752" class="text-white"
-								>+60 3-7660 4752</a
-							>
-						</p>
-						<p class="mb-1"><strong>Emails:</strong></p>
-						<ul class="list-unstyled mb-0 ps-3">
-							<li>
-								<a
-									href="mailto:mgmto1120@gmail.com"
-									class="text-white">mgmto1120@gmail.com</a
-								>
-								<small class="d-block text-white-50"
-									>(Admin, complaints, requests)</small
-								>
-							</li>
-							<li>
-								<a
-									href="mailto:pay.1120pa@gmail.com"
-									class="text-white">pay.1120pa@gmail.com</a
-								>
-								<small class="d-block text-white-50"
-									>(Payments, access cards, reno)</small
-								>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-6 mb-3">
-						<h5>👮 Security (24/7)</h5>
-						<p class="mb-1">
-							<strong>Control Room:</strong>
-							<a href="tel:03 7660 4754" class="text-white"
-								>+60 3-7660 4754</a
-							>
-						</p>
+  <!-- Contact Information -->
+  <section class="mb-5" id="contacts">
+    <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <h2 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-building me-2"></i>Management Office
+          </h2>
+          <p class="mb-2">
+            <strong>Hours:</strong><br />
+            Mon - Fri: 9am - 5pm <small>(Lunch: 1pm-2pm, Fri: 1pm-2:30pm)</small><br />
+            Sat: 9am - 1pm
+          </p>
+          <p class="mb-2">
+            <strong>Phone:</strong>
+            <a href="tel:0376604752" class="text-white text-decoration-none ms-2">+60 3-7660 4752</a>
+          </p>
+          <div class="mt-3">
+            <strong>Emails:</strong>
+            <ul class="list-unstyled mt-2">
+              <li>
+                <i class="bi bi-envelope me-2"></i>
+                <a href="mailto:mgmto1120@gmail.com" class="text-white">mgmto1120@gmail.com</a>
+                <small class="d-block text-white-50 ms-4">Admin, complaints, requests</small>
+              </li>
+              <li class="mt-2">
+                <i class="bi bi-credit-card me-2"></i>
+                <a href="mailto:pay.1120pa@gmail.com" class="text-white">pay.1120pa@gmail.com</a>
+                <small class="d-block text-white-50 ms-4">Payments, access cards, reno</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <h2 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-shield me-2"></i>Security (24/7)
+          </h2>
+          <p class="mb-2">
+            <strong>Control Room:</strong>
+            <a href="tel:0376604754" class="text-white text-decoration-none ms-2">+60 3-7660 4754</a>
+          </p>
+          <p class="mb-2">
+            <strong>Gate 1:</strong>
+            <span class="text-white-50 ms-2">Main entry/exit point</span>
+          </p>
+          
+          <h2 class="border-bottom pb-2 mb-3 mt-4">
+            <i class="bi bi-link-45deg me-2"></i>Quick Links
+          </h2>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="https://www.picktime.com/f1bb4627-4b1b-483d-b746-4c34c8808d53" target="_blank" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-calendar-plus me-1"></i>Court Booking
+            </a>
+            <a href="https://www.gpropsystems.com/login" target="_blank" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-person-plus me-1"></i>Visitor App
+            </a>
+            <a href="https://tinyurl.com/9hshcsve" target="_blank" class="btn btn-outline-light btn-sm">
+              <i class="bi bi-chat-left-text me-1"></i>Complaint Form
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-						<h5 class="mt-3">📝 Complaints</h5>
-						<p>
-							<a
-								href="https://tinyurl.com/9hshcsve"
-								target="_blank"
-								class="text-white text-decoration-underline"
-								>Online Complaint Form</a
-							>
-						</p>
-					</div>
-				</div>
-				<div class="row mt-3">
-					<div class="col-md-12">
-						<h5>🔗 Quick Links</h5>
-						<a
-							href="https://www.picktime.com/f1bb4627-4b1b-483d-b746-4c34c8808d53"
-							target="_blank"
-							class="btn btn-outline-light btn-sm me-2 mb-2"
-							>🏸 Court Booking</a
-						>
-						<a
-							href="https://www.gpropsystems.com/login"
-							target="_blank"
-							class="btn btn-outline-light btn-sm me-2 mb-2"
-							>👤 Visitor Management</a
-						>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Business Directory -->
-	<section class="mb-5" id="directory">
-		<h2 class="border-bottom pb-2 mb-4">Shops & Services</h2>
-		<p class="text-muted mb-4">
-			Businesses operating within the condo. Information last verified:
-			Jan 2026.
-		</p>
-		<ShopsDirectory />
-	</section>
+  <!-- Business Directory -->
+  <section class="mb-5" id="directory">
+    <h2 class="border-bottom pb-2 mb-4">
+      <i class="bi bi-shop me-2"></i>Shops & Services Directory
+    </h2>
+    <p class="text-muted mb-4">
+      Businesses operating within 1120pa. Information last verified: Jan 2026.
+    </p>
+    <ShopsDirectory />
+  </section>
 </Layout>

@@ -1,0 +1,143 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FormAgnostic from "../components/FormAgnostic.astro";
+
+const contactFields = [
+  {
+    name: "name",
+    type: "text" as const,
+    label: "Your Name",
+    placeholder: "John Doe",
+    required: true,
+  },
+  {
+    name: "email",
+    type: "email" as const,
+    label: "Email Address",
+    placeholder: "you@example.com",
+    required: true,
+  },
+  {
+    name: "phone",
+    type: "tel" as const,
+    label: "Phone Number",
+    placeholder: "+60 12-345 6789",
+    required: false,
+  },
+  {
+    name: "subject",
+    type: "select" as const,
+    label: "Subject",
+    required: true,
+    options: [
+      { value: "general", label: "General Inquiry" },
+      { value: "maintenance", label: "Maintenance Request" },
+      { value: "feedback", label: "Feedback" },
+      { value: "suggestion", label: "Suggestion" },
+      { value: "complaint", label: "Complaint" },
+    ],
+  },
+  {
+    name: "message",
+    type: "textarea" as const,
+    label: "Message",
+    placeholder: "How can we help you?",
+    required: true,
+  },
+];
+---
+
+<Layout title="Contact Us - 1120pa Community Hub" description="Get in touch with the 1120pa community management">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Contact</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mb-4">
+        <i class="bi bi-envelope me-2"></i>Contact Us
+      </h1>
+
+      <div class="alert alert-info mb-4">
+        <i class="bi bi-info-circle me-2"></i>
+        <strong>Note:</strong> This form uses our new Supabase-powered system. For immediate assistance, you can also email us directly at 
+        <a href="mailto:mgmto1120@gmail.com" class="alert-link">mgmto1120@gmail.com</a>.
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Send us a message</h5>
+          <FormAgnostic
+            formId="contact"
+            fields={contactFields}
+            redirectTo="/thank-you"
+            submitText="Send Message"
+            showHoneypot={true}
+            showTurnstile={false}
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card bg-primary text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="bi bi-clock me-2"></i>Response Time
+          </h5>
+          <p class="card-text mb-0">
+            We typically respond within <strong>1-2 business days</strong>.
+            For urgent matters, please call the Management Office directly.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0"><i class="bi bi-building me-2"></i>Management Office</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3">
+              <strong><i class="bi bi-telephone me-2"></i>Phone</strong>
+              <br />
+              <a href="tel:0376604752" class="text-decoration-none">+60 3-7660 4752</a>
+            </li>
+            <li class="mb-3">
+              <strong><i class="bi bi-envelope me-2"></i>Email (Admin)</strong>
+              <br />
+              <a href="mailto:mgmto1120@gmail.com" class="text-decoration-none">mgmto1120@gmail.com</a>
+            </li>
+            <li class="mb-3">
+              <strong><i class="bi bi-credit-card me-2"></i>Email (Payments)</strong>
+              <br />
+              <a href="mailto:pay.1120pa@gmail.com" class="text-decoration-none">pay.1120pa@gmail.com</a>
+            </li>
+            <li>
+              <strong><i class="bi bi-clock me-2"></i>Hours</strong>
+              <br />
+              <small>Mon-Fri: 9am-5pm<br />
+              Sat: 9am-1pm</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header bg-danger text-white">
+          <h5 class="mb-0"><i class="bi bi-shield me-2"></i>Emergencies</h5>
+        </div>
+        <div class="card-body">
+          <p class="mb-2">For <strong>24/7 security emergencies</strong>, call:</p>
+          <p class="mb-0 h4">
+            <a href="tel:0376604754" class="text-decoration-none">+60 3-7660 4754</a>
+          </p>
+          <small class="text-muted">Control Room</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

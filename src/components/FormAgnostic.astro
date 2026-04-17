@@ -1,0 +1,240 @@
+---
+interface Props {
+  formId?: string;
+  clientId?: string;
+  fields: {
+    name: string;
+    type: "text" | "email" | "tel" | "textarea" | "select";
+    label: string;
+    placeholder?: string;
+    required?: boolean;
+    options?: { value: string; label: string }[];
+  }[];
+  redirectTo?: string;
+  submitText?: string;
+  showHoneypot?: boolean;
+  showTurnstile?: boolean;
+}
+
+const {
+  formId = "contact",
+  clientId = "default",
+  fields,
+  redirectTo,
+  submitText = "Submit",
+  showHoneypot = true,
+  showTurnstile = false,
+} = Astro.props;
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
+---
+
+<form
+  id={`form-${formId}`}
+  class="form-agnostic needs-validation"
+  data-form-id={formId}
+  data-client-id={clientId}
+  data-redirect={redirectTo}
+  novalidate
+>
+  <input type="hidden" name="_form_id" value={formId} />
+  <input type="hidden" name="_client_id" value={clientId} />
+  {redirectTo && <input type="hidden" name="_redirect" value={redirectTo} />}
+
+  {showHoneypot && (
+    <div class="honeypot-field" aria-hidden="true">
+      <input
+        type="text"
+        name="_website"
+        tabindex="-1"
+        autocomplete="off"
+        placeholder="Leave this field empty"
+      />
+    </div>
+  )}
+
+  <div class="row g-3">
+    {fields.map((field) => (
+      <div class={field.type === "textarea" ? "col-12" : "col-md-6"}>
+        <label for={field.name} class="form-label">
+          {field.label}
+          {field.required && <span class="text-danger"> *</span>}
+        </label>
+
+        {field.type === "select" ? (
+          <select
+            class="form-select"
+            id={field.name}
+            name={field.name}
+            required={field.required}
+          >
+            <option value="">Select {field.label}</option>
+            {field.options?.map((opt) => (
+              <option value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        ) : field.type === "textarea" ? (
+          <textarea
+            class="form-control"
+            id={field.name}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            rows="4"
+          />
+        ) : (
+          <input
+            type={field.type}
+            class="form-control"
+            id={field.name}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+          />
+        )}
+
+        <div class="invalid-feedback">Please provide a valid {field.label.toLowerCase()}.</div>
+      </div>
+    ))}
+
+    {showTurnstile && turnstileSiteKey && (
+      <div class="col-12">
+        <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+        <div class="invalid-feedback d-none" id={`turnstile-error-${formId}`}>
+          Please complete the security check.
+        </div>
+      </div>
+    )}
+
+    <div class="col-12">
+      <div class="form-status" id={`status-${formId}`} hidden></div>
+      <button type="submit" class="btn btn-primary" id={`submit-${formId}`}>
+        <span class="submit-text">{submitText}</span>
+        <span class="spinner-border spinner-border-sm d-none" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<style>
+  .honeypot-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .form-status {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-status.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+  }
+
+  .form-status.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+  }
+</style>
+
+<script define:vars={{ formId, showTurnstile, turnstileSiteKey }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById(`form-${formId}`);
+    if (!form) return;
+
+    const submitBtn = document.getElementById(`submit-${formId}`);
+    const statusDiv = document.getElementById(`status-${formId}`);
+    const submitText = submitBtn?.querySelector(".submit-text");
+    const spinner = submitBtn?.querySelector(".spinner-border");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      if (submitText) submitText.textContent = "Submitting...";
+      if (spinner) spinner.classList.remove("d-none");
+      if (statusDiv) statusDiv.hidden = true;
+
+      try {
+        const formData = new FormData(form);
+        formData.forEach((value, key) => {
+          if (key === "_turnstile_token") {
+            const turnstileResponse = document.querySelector(
+              `.cf-turnstile[data-sitekey="${turnstileSiteKey}"] iframe`
+            );
+            if (turnstileResponse) {
+              formData.set(key, turnstileResponse.dataset.response || "");
+            }
+          }
+        });
+
+        const payload = {};
+        formData.forEach((value, key) => {
+          payload[key] = value;
+        });
+
+        const response = await fetch("/api/forms/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          if (statusDiv) {
+            statusDiv.className = "form-status success";
+            statusDiv.textContent = "Thank you! Your submission has been received.";
+            statusDiv.hidden = false;
+          }
+          form.reset();
+          form.classList.remove("was-validated");
+
+          if (result.redirectUrl) {
+            setTimeout(() => {
+              window.location.href = result.redirectUrl;
+            }, 1500);
+          }
+        } else {
+          throw new Error(result.message || "Submission failed");
+        }
+      } catch (error) {
+        if (statusDiv) {
+          statusDiv.className = "form-status error";
+          statusDiv.textContent =
+            error.message || "An error occurred. Please try again.";
+          statusDiv.hidden = false;
+        }
+      } finally {
+        submitBtn.disabled = false;
+        if (submitText) submitText.textContent = "Submit";
+        if (spinner) spinner.classList.add("d-none");
+      }
+    });
+  });
+</script>
+
+{showTurnstile && turnstileSiteKey && (
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer
+  />
+)}

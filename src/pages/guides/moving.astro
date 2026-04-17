@@ -1,0 +1,234 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Moving In/Out Guide - 1120pa Community Hub" description="Essential guide for moving in or out of 1120 Park Avenue">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active">Guides</li>
+      <li class="breadcrumb-item active" aria-current="page">Moving Guide</li>
+    </ol>
+  </nav>
+
+  <h1 class="mb-4">Moving In / Moving Out Guide</h1>
+
+  <div class="alert alert-primary">
+    <i class="bi bi-lightbulb me-2"></i>
+    <strong>Welcome!</strong> This guide will help you navigate the moving process smoothly. Please read carefully to avoid any issues.
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <h3><i class="bi bi-box-arrow-in-right me-2"></i>Moving In</h3>
+      
+      <div class="accordion mb-4" id="movingInAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#checklist">
+              Essential Checklist
+            </button>
+          </h2>
+          <div id="checklist" class="accordion-collapse collapse show" data-bs-parent="#movingInAccordion">
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Documentation</h6>
+                  <ul class="list-group mb-3">
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check1">
+                      <label class="form-check-label" for="check1">Collect keys from Management</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check2">
+                      <label class="form-check-label" for="check2">Register access card / fob</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check3">
+                      <label class="form-check-label" for="check3">Submit move-in notice to Management</li>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check4">
+                      <label class="form-check-label" for="check4">Sign occupancy agreement</label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6>Setup</h6>
+                  <ul class="list-group mb-3">
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check5">
+                      <label class="form-check-label" for="check5">Set up utilities (electricity, water)</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check6">
+                      <label class="form-check-label" for="check6">Register internet service</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check7">
+                      <label class="form-check-label" for="check7">Download visitor registration app</label>
+                    </li>
+                    <li class="list-group-item">
+                      <input class="form-check-input me-2" type="checkbox" id="check8">
+                      <label class="form-check-label" for="check8">Review House Rules</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#serviceElevator">
+              Booking the Service Elevator
+            </button>
+          </h2>
+          <div id="serviceElevator" class="accordion-collapse collapse" data-bs-parent="#movingInAccordion">
+            <div class="accordion-body">
+              <p>For moving large items, you <strong>must</strong> book the service elevator:</p>
+              <ol>
+                <li>Contact Management Office at least <strong>48 hours</strong> in advance</li>
+                <li>Confirm your date and time slot</li>
+                <li>Pay the refundable deposit</li>
+                <li>Present your booking confirmation at the guard house on moving day</li>
+              </ol>
+              <div class="alert alert-warning mb-0">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Without a booking, you cannot use the service elevator for moving.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#parkingMoving">
+              Parking During Move
+            </button>
+          </h2>
+          <div id="parkingMoving" class="accordion-collapse collapse" data-bs-parent="#movingInAccordion">
+            <div class="accordion-body">
+              <p>For moving trucks and vehicles:</p>
+              <ul>
+                <li>Use the designated <strong>loading/unloading bays</strong></li>
+                <li>Contact Security in advance for temporary parking arrangements</li>
+                <li>Do not block other residents' access</li>
+                <li>Moving vehicles should not stay longer than necessary</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3><i class="bi bi-box-arrow-right me-2"></i>Moving Out</h3>
+      <div class="accordion" id="movingOutAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#moveOutChecklist">
+              Move-Out Checklist
+            </button>
+          </h2>
+          <div id="moveOutChecklist" class="accordion-collapse collapse show" data-bs-parent="#movingOutAccordion">
+            <div class="accordion-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out1">
+                  <label class="form-check-label" for="out1">Submit notice to Management (usually 30 days)</label>
+                </li>
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out2">
+                  <label class="form-check-label" for="out2">Settle all outstanding maintenance fees</label>
+                </li>
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out3">
+                  <label class="form-check-label" for="out3">Return all access cards and keys</label>
+                </li>
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out4">
+                  <label class="form-check-label" for="out4">Book service elevator for moving out</label>
+                </li>
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out5">
+                  <label class="form-check-label" for="out5">Arrange final inspection with Management</label>
+                </li>
+                <li class="list-group-item">
+                  <input class="form-check-input me-2" type="checkbox" id="out6">
+                  <label class="form-check-label" for="out6">Cancel utilities and internet services</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#refunds">
+              Deposits & Refunds
+            </button>
+          </h2>
+          <div id="refunds" class="accordion-collapse collapse" data-bs-parent="#movingOutAccordion">
+            <div class="accordion-body">
+              <p>Upon moving out, you may be eligible for refunds of:</p>
+              <ul>
+                <li><strong>Access Card Deposit</strong> - Return cards to receive refund</li>
+                <li><strong>Renovation Deposit</strong> - Subject to inspection and any damage deductions</li>
+                <li><strong>Utility Deposits</strong> - Contact your utility providers</li>
+              </ul>
+              <p>Refund timeline: Usually within <strong>30 days</strong> of final inspection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card sticky-top" style="top: 20px;">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0"><i class="bi bi-telephone me-2"></i>Contact</h5>
+        </div>
+        <div class="card-body">
+          <p>For move-in/move-out arrangements:</p>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <strong><i class="bi bi-building me-2"></i>Management Office</strong>
+              <br />See contacts section below
+            </li>
+            <li class="mb-2">
+              <strong><i class="bi bi-shield me-2"></i>Security Office</strong>
+              <br />For service elevator booking confirmation
+            </li>
+          </ul>
+          <a href="/#contacts" class="btn btn-outline-primary w-100">View Contact Numbers</a>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0"><i class="bi bi-lightbulb me-2"></i>Pro Tips</h5>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled small">
+            <li class="mb-2">
+              <i class="bi bi-check2 me-2 text-success"></i>
+              Book service elevator <strong>early</strong> - slots fill up fast!
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check2 me-2 text-success"></i>
+              Inform your neighbors about moving day
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-check2 me-2 text-success"></i>
+              Take photos of your unit's condition before moving in
+            </li>
+            <li>
+              <i class="bi bi-check2 me-2 text-success"></i>
+              Keep contact numbers saved for emergencies
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
